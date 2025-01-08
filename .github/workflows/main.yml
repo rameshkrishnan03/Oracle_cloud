@@ -89,7 +89,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: Data
+          ref: Develop
 
       - name: Create JSON file from payload
         run: |
@@ -121,4 +121,4 @@ jobs:
           sample_name=$(echo "${{ github.event.client_payload.name }}" | tr ' ' '_')
           git add ${sample_name}.json
           git commit -m "Save client payload data for ${{ github.event.client_payload.name }}"
-          git push origin Data
+          git push origin Develop
