@@ -102,6 +102,7 @@ jobs:
           region=$(jq -r '.secret_value | split(";") | .[2] | split("=") | .[1]' output.json)
           key_file=$(jq -r '.secret_value | split(";") | .[3] | split("=") | .[1]' output.json)
           fingerprint=$(jq -r '.secret_value | split(";") | .[4] | split("=") | .[1]' output.json)
+          compartment=$(jq -r '.secret_value | split(";") | .[5] | split("=") | .[1]' output.json)
          
           # Create the output JSON in the desired format
               cat <<EOF > ${sample_name}.json
@@ -109,8 +110,9 @@ jobs:
              "USER_OCID": "$user",
              "TENANCY_OCID": "$tenancy",
              "FINGERPRINT": "$fingerprint",
-             "KEY_FILE": "$key_file",
-             "REGION": "$region"
+             "REGION": "$region",
+             "COMPARTMENT_OCID":"$compartment",
+             "KEY_FILE": "$key_file"
            }
            EOF
           
